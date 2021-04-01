@@ -367,6 +367,47 @@ public class Picture
   }
 
    ////////////////////// methods ///////////////////////////////////////
+   //Method by Tomas Oh
+   //Method to use the sepia tone in images
+   public void sepiaTone()
+   {
+     //create pixel array
+     Pixel[][] pixels = this.getPixels2D();
+     //create pixel variable
+     Pixel pixel = null;
+     //nested loops to loop through all of the pixels
+     for(int row = 0; row < pixels.length; row++)
+     {
+       for(int col = 0; col < pixels[0].length; col++)
+       {
+         //assign value to the pixel variable
+         pixel = pixels[row][col];
+         //create newRed, newGreen, and newBlue variables that take the original RGB values and modify its values
+         int newRed = (int)((0.393 * pixel.getRed()) + (0.769 * pixel.getGreen()) + (0.189 * pixel.getBlue()));
+
+         int newGreen = (int)((0.349 * pixel.getRed()) + (0.686 * pixel.getGreen()) + 0.168 * (pixel.getBlue()));
+
+         int newBlue = (int)((0.272 * pixel.getRed()) + (0.534 * pixel.getGreen()) + (0.131 * pixel.getBlue()));
+         //create if statements to check if the new RGB values are greater than 255. If greater than 255, then set the new RGB values to 255
+         if(newRed > 255)
+         {
+           newRed = 255;
+         }
+         if(newGreen > 255)
+         {
+           newGreen = 255;
+         }
+         if(newBlue > 255)
+         {
+           newBlue = 255;
+         }
+         //assign new RGB values to the pixel
+         pixel.setRed(newRed);
+         pixel.setGreen(newGreen);
+         pixel.setBlue(newBlue);
+       }
+     }
+   }
 
    
 
